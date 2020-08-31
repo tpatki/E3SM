@@ -2132,7 +2132,8 @@ sub setup_logic_irrigate {
     elsif ( defined($nl->get_value('irrigate')) ) {
       if ($nl->get_value('irrigate') =~ /$TRUE/i ) {
         #fatal_error("irrigate TRUE needs crop TRUE but it is not\n");
-         warning("Warning, Irrigation turned on without crop model\n");                                                             
+         warning("Warning, Irrigation turned on without crop model\n");
+         add_default($opts->{'test'}, $nl_flags->{'inputdata_rootdir'}, $definition, $defaults, $nl, 'irrigate', 'val'=>$nl_flags->{'irrig'});         
       }
     }
     $nl_flags->{'irrigate'} = lc($nl->get_value('irrigate'));
