@@ -12,12 +12,12 @@ module clm_interface_funcsMod
   !--------------------------------------------------------------------------------------
   ! DESCRIPTION:
   ! Coupling of CLM with any specific Soil BGC module Consists of 3 STEPS:
-  ! STEP-1:   clm vars             -> clm_interface_data (i.e. elm_interface_dataType)  ; pass clm vars to clm_interface_data
-  ! STEP-2:   clm_interface_data   -> soil bgc module -> clm_interface_data
-  !      2.1: clm_interface_data   -> soil bgc module
+  ! STEP-1:   clm vars             -> elm_interface_data (i.e. elm_interface_dataType)  ; pass clm vars to elm_interface_data
+  ! STEP-2:   elm_interface_data   -> soil bgc module -> elm_interface_data
+  !      2.1: elm_interface_data   -> soil bgc module
   !      2.2: run soil bgc module
-  !      2.3: soil bgc module      -> clm_interface_data
-  ! STEP-3:   clm_interface_data   -> clm vars
+  !      2.3: soil bgc module      -> elm_interface_data
+  ! STEP-3:   elm_interface_data   -> clm vars
   !--------------------------------------------------------------------------------------
 
 
@@ -90,16 +90,16 @@ module clm_interface_funcsMod
   !--------------------------------------------------------------------------------------
   ! (1) GENERIC SUBROUTINES: used by any specific soil BGC module
   ! pass clm variables to clm_bgc_data
-  public    :: get_clm_data                 ! STEP-1: clm vars -> clm_interface_data
+  public    :: get_clm_data                 ! STEP-1: clm vars -> elm_interface_data
 
-  ! pass clm variables to clm_interface_data, called by get_clm_data
+  ! pass clm variables to elm_interface_data, called by get_clm_data
   private   :: get_clm_soil_property        ! STEP-1.1: soil properties
   private   :: get_clm_soil_th_state        ! STEP-1.2: thermohydrology (TH) state vars
   private   :: get_clm_bgc_state            ! STEP-1.3: state vars
   private   :: get_clm_bgc_flux             ! STEP-1.4: flux vars
 
-  ! STEP-3.x: clm_interface_data -> clm vars
-  ! update clm variables from clm_interface_data,
+  ! STEP-3.x: elm_interface_data -> clm vars
+  ! update clm variables from elm_interface_data,
   ! e.g., called in 'update_bgc_data_clm2clm' and 'update_bgc_data_pf2clm'
   ! specific bgc-module (e.g., PFLOTRAN) requires certain combination of these subroutines
   private   :: update_bgc_state_decomp
@@ -116,15 +116,15 @@ module clm_interface_funcsMod
   ! (2) SPECIFIC SUBROUTINES: used by a specific soil BGC module
   ! (2.1) Specific Subroutines for running clm-bgc (CN or BGC) through interface
   ! if (use_clm_interface .and. use_clm_bgc)
-  public    :: clm_bgc_run              ! STEP-2:   clm_interface_data  -> clm-bgc module -> clm_interface_data    ; called in clm_driver
-  private   :: clm_bgc_get_data         ! STEP-2.1: clm_interface_data  -> clm-bgc module                          ; called in clm_bgc_run
+  public    :: clm_bgc_run              ! STEP-2:   elm_interface_data  -> clm-bgc module -> elm_interface_data    ; called in clm_driver
+  private   :: clm_bgc_get_data         ! STEP-2.1: elm_interface_data  -> clm-bgc module                          ; called in clm_bgc_run
                                         ! STEP-2.2: run clm-bgc module                                             ; see SoilLittDecompAlloc in SoilLittDecompMod
-  private   :: clm_bgc_update_data      ! STEP-2.3: clm-bgc module-> clm_interface_data                            ; called in clm_bgc_run
-  public    :: update_bgc_data_clm2clm  ! STEP-3:   clm_interface_data  -> clm vars                                ; called in clm_driver
+  private   :: clm_bgc_update_data      ! STEP-2.3: clm-bgc module-> elm_interface_data                            ; called in clm_bgc_run
+  public    :: update_bgc_data_clm2clm  ! STEP-3:   elm_interface_data  -> clm vars                                ; called in clm_driver
 
   ! (2.2) Specific Subroutines for CLM-PFLOTRAN Coupling: update clm variables from pflotran
   ! if (use_clm_interface .and. use_pflotran)
-  public    :: update_bgc_data_pf2clm   ! STEP-3:   clm_interface_data  -> clm vars                                ; called in clm_driver
+  public    :: update_bgc_data_pf2clm   ! STEP-3:   elm_interface_data  -> clm vars                                ; called in clm_driver
                                         ! STEP-2:   see 'clm_pf_run' in clm_interface_pflotranMod
 
   public    :: update_th_data_pf2clm
@@ -1348,7 +1348,7 @@ contains
 ! BEG of CLM-bgc through interface
 !--------------------------------------------------------------------------------------
   ! !INTERFACE:
-  subroutine clm_bgc_run(clm_interface_data, bounds,        &
+  subroutine clm_bgc_run(elm_interface_data, bounds,        &
                 num_soilc, filter_soilc,                    &
                 num_soilp, filter_soilp,                    &
                 canopystate_vars, soilstate_vars,           &
@@ -1380,11 +1380,11 @@ contains
     type(phosphorusstate_type)          , intent(inout) :: phosphorusstate_vars
     type(phosphorusflux_type)           , intent(inout) :: phosphorusflux_vars
 
-    type(elm_interface_data_type)       , intent(inout) :: clm_interface_data
+    type(elm_interface_data_type)       , intent(inout) :: elm_interface_data
 
     !-------------------------------------------------------------
     ! STEP-2: (i) pass data from clm_bgc_data to SoilLittDecompAlloc
-    call clm_bgc_get_data(clm_interface_data, bounds,       &
+    call clm_bgc_get_data(elm_interface_data, bounds,       &
                 num_soilc, filter_soilc,                    &
                 canopystate_vars, soilstate_vars,           &
                 temperature_vars, waterstate_vars,          &
@@ -1404,7 +1404,7 @@ contains
                phosphorusstate_vars,phosphorusflux_vars)
 
     ! STEP-2: (iii) update clm_bgc_data from SoilLittDecompAlloc
-    call clm_bgc_update_data(clm_interface_data%bgc, bounds, &
+    call clm_bgc_update_data(elm_interface_data%bgc, bounds, &
                 num_soilc, filter_soilc,                     &
                 cnstate_vars, carbonflux_vars,               &
                 nitrogenflux_vars, phosphorusflux_vars)
@@ -1415,7 +1415,7 @@ contains
 !--------------------------------------------------------------------------------------
   ! !INTERFACE:
   ! pass data from clm_bgc_data to clm original data-types that used by SoilLittDecompAlloc
-  subroutine clm_bgc_get_data(clm_interface_data,       &
+  subroutine clm_bgc_get_data(elm_interface_data,       &
             bounds, num_soilc, filter_soilc,            &
             canopystate_vars, soilstate_vars,           &
             temperature_vars, waterstate_vars,          &
@@ -1444,7 +1444,7 @@ contains
     type(phosphorusstate_type)  , intent(inout) :: phosphorusstate_vars
     type(phosphorusflux_type)   , intent(inout) :: phosphorusflux_vars
 
-    type(elm_interface_data_type), intent(in)   :: clm_interface_data
+    type(elm_interface_data_type), intent(in)   :: elm_interface_data
 
     ! LOCAL VARIABLES:
     integer :: fc, c, j, k
@@ -1499,30 +1499,30 @@ contains
     do fc = 1, num_soilc
         c = filter_soilc(fc)
 
-        plant_ndemand_col(c)        = clm_interface_data%bgc%plant_ndemand_col(c)
-        plant_pdemand_col(c)        = clm_interface_data%bgc%plant_pdemand_col(c)
+        plant_ndemand_col(c)        = elm_interface_data%bgc%plant_ndemand_col(c)
+        plant_pdemand_col(c)        = elm_interface_data%bgc%plant_pdemand_col(c)
 
-        finundated(c)               = clm_interface_data%bgc%finundated_col(c)
+        finundated(c)               = elm_interface_data%bgc%finundated_col(c)
 
-        bd(c,:)                     = clm_interface_data%bd_col(c,:)
-        watsat(c,:)                 = clm_interface_data%watsat_col(c,:)
-        bsw(c,:)                    = clm_interface_data%bsw_col(c,:)
-        sucsat(c,:)                 = clm_interface_data%sucsat_col(c,:)
-        watfc(c,:)                  = clm_interface_data%watfc_col(c,:)
-        cellorg(c,:)                = clm_interface_data%cellorg_col(c,:)
+        bd(c,:)                     = elm_interface_data%bd_col(c,:)
+        watsat(c,:)                 = elm_interface_data%watsat_col(c,:)
+        bsw(c,:)                    = elm_interface_data%bsw_col(c,:)
+        sucsat(c,:)                 = elm_interface_data%sucsat_col(c,:)
+        watfc(c,:)                  = elm_interface_data%watfc_col(c,:)
+        cellorg(c,:)                = elm_interface_data%cellorg_col(c,:)
 
-        soilpsi(c,:)                = clm_interface_data%th%soilpsi_col(c,:)
-        h2osoi_vol(c,:)             = clm_interface_data%th%h2osoi_vol_col(c,:)
-        h2osoi_liq(c,:)             = clm_interface_data%th%h2osoi_liq_col(c,:)
+        soilpsi(c,:)                = elm_interface_data%th%soilpsi_col(c,:)
+        h2osoi_vol(c,:)             = elm_interface_data%th%h2osoi_vol_col(c,:)
+        h2osoi_liq(c,:)             = elm_interface_data%th%h2osoi_liq_col(c,:)
 
-        t_soisno(c,:)               = clm_interface_data%th%t_soisno_col(c,:)
+        t_soisno(c,:)               = elm_interface_data%th%t_soisno_col(c,:)
 
-        o2stress_unsat(c,:)         = clm_interface_data%bgc%o2stress_unsat_col(c,:)
-        o2stress_sat(c,:)           = clm_interface_data%bgc%o2stress_sat_col(c,:)
-        o2_decomp_depth_unsat(c,:)  = clm_interface_data%bgc%o2_decomp_depth_unsat_col(c,:)
-        conc_o2_unsat(c,:)          = clm_interface_data%bgc%conc_o2_unsat_col(c,:)
-        o2_decomp_depth_sat(c,:)    = clm_interface_data%bgc%o2_decomp_depth_sat_col(c,:)
-        conc_o2_sat(c,:)            = clm_interface_data%bgc%conc_o2_sat_col(c,:)
+        o2stress_unsat(c,:)         = elm_interface_data%bgc%o2stress_unsat_col(c,:)
+        o2stress_sat(c,:)           = elm_interface_data%bgc%o2stress_sat_col(c,:)
+        o2_decomp_depth_unsat(c,:)  = elm_interface_data%bgc%o2_decomp_depth_unsat_col(c,:)
+        conc_o2_unsat(c,:)          = elm_interface_data%bgc%conc_o2_unsat_col(c,:)
+        o2_decomp_depth_sat(c,:)    = elm_interface_data%bgc%o2_decomp_depth_sat_col(c,:)
+        conc_o2_sat(c,:)            = elm_interface_data%bgc%conc_o2_sat_col(c,:)
 
     end do
 
@@ -1530,21 +1530,21 @@ contains
     do fc = 1, num_soilc
         c = filter_soilc(fc)
             do k = 1, ndecomp_pools
-                decomp_cpools_vr(c,:,k) = clm_interface_data%bgc%decomp_cpools_vr_col(c,:,k)
-                decomp_npools_vr(c,:,k) = clm_interface_data%bgc%decomp_npools_vr_col(c,:,k)
-                decomp_ppools_vr(c,:,k) = clm_interface_data%bgc%decomp_ppools_vr_col(c,:,k)
+                decomp_cpools_vr(c,:,k) = elm_interface_data%bgc%decomp_cpools_vr_col(c,:,k)
+                decomp_npools_vr(c,:,k) = elm_interface_data%bgc%decomp_npools_vr_col(c,:,k)
+                decomp_ppools_vr(c,:,k) = elm_interface_data%bgc%decomp_ppools_vr_col(c,:,k)
             end do
 
-            smin_no3_vr(c,:)        = clm_interface_data%bgc%smin_no3_vr_col(c,:)
-            smin_nh4_vr(c,:)        = clm_interface_data%bgc%smin_nh4_vr_col(c,:)
-            smin_nh4sorb_vr(c,:)    = clm_interface_data%bgc%smin_nh4sorb_vr_col(c,:)
+            smin_no3_vr(c,:)        = elm_interface_data%bgc%smin_no3_vr_col(c,:)
+            smin_nh4_vr(c,:)        = elm_interface_data%bgc%smin_nh4_vr_col(c,:)
+            smin_nh4sorb_vr(c,:)    = elm_interface_data%bgc%smin_nh4sorb_vr_col(c,:)
 
-            solutionp_vr(c,:)       = clm_interface_data%bgc%solutionp_vr_col(c,:)
-            labilep_vr(c,:)         = clm_interface_data%bgc%labilep_vr_col(c,:)
-            secondp_vr(c,:)         = clm_interface_data%bgc%secondp_vr_col(c,:)
-            sminp_vr(c,:)           = clm_interface_data%bgc%sminp_vr_col(c,:)
-            occlp_vr(c,:)           = clm_interface_data%bgc%occlp_vr_col(c,:)
-            primp_vr(c,:)           = clm_interface_data%bgc%primp_vr_col(c,:)
+            solutionp_vr(c,:)       = elm_interface_data%bgc%solutionp_vr_col(c,:)
+            labilep_vr(c,:)         = elm_interface_data%bgc%labilep_vr_col(c,:)
+            secondp_vr(c,:)         = elm_interface_data%bgc%secondp_vr_col(c,:)
+            sminp_vr(c,:)           = elm_interface_data%bgc%sminp_vr_col(c,:)
+            occlp_vr(c,:)           = elm_interface_data%bgc%occlp_vr_col(c,:)
+            primp_vr(c,:)           = elm_interface_data%bgc%primp_vr_col(c,:)
     end do
 
     end associate
