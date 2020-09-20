@@ -116,10 +116,10 @@ module elm_interface_funcsMod
   ! (2) SPECIFIC SUBROUTINES: used by a specific soil BGC module
   ! (2.1) Specific Subroutines for running clm-bgc (CN or BGC) through interface
   ! if (use_clm_interface .and. use_clm_bgc)
-  public    :: clm_bgc_run              ! STEP-2:   elm_interface_data  -> clm-bgc module -> elm_interface_data    ; called in clm_driver
-  private   :: clm_bgc_get_data         ! STEP-2.1: elm_interface_data  -> clm-bgc module                          ; called in clm_bgc_run
+  public    :: elm_bgc_run              ! STEP-2:   elm_interface_data  -> clm-bgc module -> elm_interface_data    ; called in clm_driver
+  private   :: elm_bgc_get_data         ! STEP-2.1: elm_interface_data  -> clm-bgc module                          ; called in elm_bgc_run
                                         ! STEP-2.2: run clm-bgc module                                             ; see SoilLittDecompAlloc in SoilLittDecompMod
-  private   :: clm_bgc_update_data      ! STEP-2.3: clm-bgc module-> elm_interface_data                            ; called in clm_bgc_run
+  private   :: elm_bgc_update_data      ! STEP-2.3: clm-bgc module-> elm_interface_data                            ; called in elm_bgc_run
   public    :: update_bgc_data_clm2clm  ! STEP-3:   elm_interface_data  -> clm vars                                ; called in clm_driver
 
   ! (2.2) Specific Subroutines for CLM-PFLOTRAN Coupling: update clm variables from pflotran
@@ -127,7 +127,7 @@ module elm_interface_funcsMod
   public    :: update_bgc_data_pf2clm   ! STEP-3:   elm_interface_data  -> clm vars                                ; called in clm_driver
                                         ! STEP-2:   see 'clm_pf_run' in clm_interface_pflotranMod
 
-  public    :: update_th_data_pf2clm
+  public    :: update_th_data_pf2elm
   !--------------------------------------------------------------------------------------
 
 contains
@@ -830,7 +830,7 @@ contains
   end subroutine update_soil_temperature
 !--------------------------------------------------------------------------------------
 !--------------------------------------------------------------------------------------
-  subroutine update_th_data_pf2clm(clm_idata_th,           &
+  subroutine update_th_data_pf2elm(clm_idata_th,           &
            bounds, num_soilc, filter_soilc,                &
            waterstate_vars, waterflux_vars,                &
            temperature_vars, energyflux_vars,              &
@@ -856,7 +856,7 @@ contains
 
     !-----------------------------------------------------------------------
 
-    character(len=256) :: subname = "update_th_data_pf2clm"
+    character(len=256) :: subname = "update_th_data_pf2elm"
 
     if (pf_tmode) then
         call update_soil_temperature(clm_idata_th,      &
@@ -870,7 +870,7 @@ contains
                    soilstate_vars, waterstate_vars)
     end if
 
-  end subroutine update_th_data_pf2clm
+  end subroutine update_th_data_pf2elm
 !--------------------------------------------------------------------------------------
 
 
@@ -1348,7 +1348,7 @@ contains
 ! BEG of CLM-bgc through interface
 !--------------------------------------------------------------------------------------
   ! !INTERFACE:
-  subroutine clm_bgc_run(elm_interface_data, bounds,        &
+  subroutine elm_bgc_run(elm_interface_data, bounds,        &
                 num_soilc, filter_soilc,                    &
                 num_soilp, filter_soilp,                    &
                 canopystate_vars, soilstate_vars,           &
@@ -1384,7 +1384,7 @@ contains
 
     !-------------------------------------------------------------
     ! STEP-2: (i) pass data from clm_bgc_data to SoilLittDecompAlloc
-    call clm_bgc_get_data(elm_interface_data, bounds,       &
+    call elm_bgc_get_data(elm_interface_data, bounds,       &
                 num_soilc, filter_soilc,                    &
                 canopystate_vars, soilstate_vars,           &
                 temperature_vars, waterstate_vars,          &
@@ -1404,18 +1404,18 @@ contains
                phosphorusstate_vars,phosphorusflux_vars)
 
     ! STEP-2: (iii) update clm_bgc_data from SoilLittDecompAlloc
-    call clm_bgc_update_data(elm_interface_data%bgc, bounds, &
+    call elm_bgc_update_data(elm_interface_data%bgc, bounds, &
                 num_soilc, filter_soilc,                     &
                 cnstate_vars, carbonflux_vars,               &
                 nitrogenflux_vars, phosphorusflux_vars)
 
-  end subroutine clm_bgc_run
+  end subroutine elm_bgc_run
 !--------------------------------------------------------------------------------------
 
 !--------------------------------------------------------------------------------------
   ! !INTERFACE:
   ! pass data from clm_bgc_data to clm original data-types that used by SoilLittDecompAlloc
-  subroutine clm_bgc_get_data(elm_interface_data,       &
+  subroutine elm_bgc_get_data(elm_interface_data,       &
             bounds, num_soilc, filter_soilc,            &
             canopystate_vars, soilstate_vars,           &
             temperature_vars, waterstate_vars,          &
@@ -1548,13 +1548,13 @@ contains
     end do
 
     end associate
-  end subroutine clm_bgc_get_data
+  end subroutine elm_bgc_get_data
 !--------------------------------------------------------------------------------------
 
 !--------------------------------------------------------------------------------------
   ! !INTERFACE:
   ! pass data from clm_bgc to clm_bgc_data
-  subroutine clm_bgc_update_data(clm_bgc_data, bounds,  &
+  subroutine elm_bgc_update_data(clm_bgc_data, bounds,  &
             num_soilc, filter_soilc,                    &
             cnstate_vars, carbonflux_vars,              &
             nitrogenflux_vars, phosphorusflux_vars)
@@ -1694,7 +1694,7 @@ contains
 
 
     end associate
-  end subroutine clm_bgc_update_data
+  end subroutine elm_bgc_update_data
 !--------------------------------------------------------------------------------------
 
 !--------------------------------------------------------------------------------------
