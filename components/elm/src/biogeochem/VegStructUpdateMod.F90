@@ -41,7 +41,7 @@ contains
     ! !USES:
     use pftvarcon        , only : noveg, nc3crop, nc3irrig, nbrdlf_evr_shrub, nbrdlf_dcd_brl_shrub
     use pftvarcon        , only : ncorn, ncornirrig, npcropmin, ztopmx, laimx
-    use clm_time_manager , only : get_rad_step_size
+    use elm_time_manager , only : get_rad_step_size
     use elm_varctl       , only : spinup_state, spinup_mortality_factor
     !
     ! !ARGUMENTS:

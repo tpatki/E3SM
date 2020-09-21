@@ -103,7 +103,7 @@ contains
     !
     ! !USES:
     use shr_const_mod      , only : SHR_CONST_TKFRZ, SHR_CONST_RGAS
-    use clm_time_manager   , only : get_step_size, get_prev_date, get_nstep
+    use elm_time_manager   , only : get_step_size, get_prev_date, get_nstep
     use elm_varcon         , only : sb, cpair, hvap, vkc, grav, denice
     use elm_varcon         , only : denh2o, tfrz, csoilc, tlsai_crit, alpha_aero
     use elm_varcon         , only : isecspday, degpsec

@@ -91,7 +91,7 @@ contains
     !
     !
     ! !USES:
-    use clm_time_manager , only : get_days_per_year, get_step_size
+    use elm_time_manager , only : get_days_per_year, get_step_size
     use shr_sys_mod      , only : shr_sys_flush
     use elm_varcon       , only : secspday, spval
     use soilorder_varcon, only: r_weather
@@ -158,7 +158,7 @@ contains
     !
     !
     ! !USES:
-    use clm_time_manager , only : get_days_per_year, get_step_size
+    use elm_time_manager , only : get_days_per_year, get_step_size
     use shr_sys_mod      , only : shr_sys_flush
     use elm_varcon       , only : secspday, spval
     use soilorder_varcon , only : r_adsorp
@@ -227,7 +227,7 @@ contains
     !
     !
     ! !USES:
-    use clm_time_manager , only : get_days_per_year, get_step_size
+    use elm_time_manager , only : get_days_per_year, get_step_size
     use shr_sys_mod      , only : shr_sys_flush
     use elm_varcon       , only : secspday, spval
     use soilorder_varcon , only : r_desorp
@@ -296,7 +296,7 @@ contains
     !
     !
     ! !USES:
-    use clm_time_manager , only : get_days_per_year, get_step_size
+    use elm_time_manager , only : get_days_per_year, get_step_size
     use shr_sys_mod      , only : shr_sys_flush
     use elm_varcon       , only : secspday, spval
     use soilorder_varcon , only : r_occlude
@@ -371,7 +371,7 @@ contains
     !
     ! !USES:
     use elm_varpar       , only : nlevsoi
-    use clm_time_manager , only : get_step_size
+    use elm_time_manager , only : get_step_size
     !
     ! !ARGUMENTS:
     type(bounds_type)        , intent(in)    :: bounds
@@ -491,7 +491,7 @@ contains
     ! !USES:
     use elm_varpar       , only : nlevsoi
     use elm_varpar       , only : ndecomp_pools
-    use clm_time_manager , only : get_step_size
+    use elm_time_manager , only : get_step_size
     use soilorder_varcon , only:k_s1_biochem,k_s2_biochem,k_s3_biochem,k_s4_biochem
     use elm_varcon       , only : secspday, spval
 
@@ -604,7 +604,7 @@ contains
     ! !USES:
     use pftvarcon              , only : noveg
     use elm_varpar             , only : ndecomp_pools
-    use clm_time_manager       , only : get_step_size
+    use elm_time_manager       , only : get_step_size
     use CNDecompCascadeConType , only : decomp_cascade_con
  
     !

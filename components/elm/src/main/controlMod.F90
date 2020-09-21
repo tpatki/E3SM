@@ -112,7 +112,7 @@ contains
     ! Initialize CLM run control information
     !
     ! !USES:
-    use clm_time_manager          , only : set_timemgr_init, get_timemgr_defaults
+    use elm_time_manager          , only : set_timemgr_init, get_timemgr_defaults
     use fileutils                 , only : getavu, relavu
     use shr_string_mod            , only : shr_string_getParentDir
     use clm_interface_pflotranMod , only : clm_pf_readnl

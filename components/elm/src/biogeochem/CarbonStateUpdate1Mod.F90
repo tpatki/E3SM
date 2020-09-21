@@ -7,7 +7,7 @@ module CarbonStateUpdate1Mod
   use shr_kind_mod            , only : r8 => shr_kind_r8
   use shr_log_mod             , only : errMsg => shr_log_errMsg
   use abortutils              , only : endrun
-  use clm_time_manager        , only : get_step_size
+  use elm_time_manager        , only : get_step_size
   use decompMod               , only : bounds_type
   use elm_varpar              , only : ndecomp_cascade_transitions, nlevdecomp
   use elm_varpar              , only : i_met_lit, i_cel_lit, i_lig_lit, i_cwd

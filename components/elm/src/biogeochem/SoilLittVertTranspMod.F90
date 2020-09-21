@@ -102,7 +102,7 @@ contains
     ! Initial code by C. Koven and W. Riley
     !
     ! !USES:
-    use clm_time_manager , only : get_step_size, get_curr_date
+    use elm_time_manager , only : get_step_size, get_curr_date
     use elm_varpar       , only : nlevdecomp, ndecomp_pools, nlevdecomp_full
     use elm_varcon       , only : zsoi, dzsoi_decomp, zisoi
     use TridiagonalMod   , only : Tridiagonal

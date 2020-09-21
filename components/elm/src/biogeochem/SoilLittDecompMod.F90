@@ -627,7 +627,7 @@ contains
     ! !USES:
     use AllocationMod , only: Allocation3_PlantCNPAlloc ! Phase-3 of CNAllocation
     use atm2lndType     , only: atm2lnd_type
-    use clm_time_manager, only: get_step_size
+    use elm_time_manager, only: get_step_size
 !    use elm_varpar      , only: nlevdecomp, ndecomp_pools
 
     !

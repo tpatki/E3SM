@@ -89,7 +89,7 @@ contains
     !
     ! !USES:
     use shr_const_mod, only: SHR_CONST_CDAY
-    use clm_time_manager, only : get_step_size
+    use elm_time_manager, only : get_step_size
     use decompMod, only : get_proc_bounds, get_proc_global
     !
     ! !ARGUMENTS:
@@ -575,7 +575,7 @@ contains
     ! Read/write accumulation restart data
     !
     ! !USES:
-    use clm_time_manager, only : is_restart
+    use elm_time_manager, only : is_restart
     use elm_varcon      , only : ispval
     use ncdio_pio
     use pio

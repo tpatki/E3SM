@@ -5,7 +5,7 @@ module AerosolMod
   use shr_log_mod      , only : errMsg => shr_log_errMsg
   use decompMod        , only : bounds_type
   use elm_varpar       , only : nlevsno 
-  use clm_time_manager , only : get_step_size
+  use elm_time_manager , only : get_step_size
   use atm2lndType      , only : atm2lnd_type
   use WaterfluxType    , only : waterflux_type
   use WaterstateType   , only : waterstate_type

@@ -61,7 +61,7 @@ contains
     use elm_varcon          , only : spval, sb, tfrz
     use column_varcon       , only : icol_road_perv, icol_road_imperv
     use column_varcon       , only : icol_roof, icol_sunwall, icol_shadewall
-    use clm_time_manager    , only : get_curr_date, get_step_size
+    use elm_time_manager    , only : get_curr_date, get_step_size
     !
     ! !ARGUMENTS:
     type(bounds_type)      , intent(in)    :: bounds    

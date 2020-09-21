@@ -5,7 +5,7 @@ module NitrogenStateUpdate1Mod
   !
   ! !USES:
   use shr_kind_mod           , only: r8 => shr_kind_r8
-  use clm_time_manager       , only : get_step_size
+  use elm_time_manager       , only : get_step_size
   use elm_varpar             , only : nlevdecomp, ndecomp_pools, ndecomp_cascade_transitions
   use elm_varpar             , only : crop_prog, i_met_lit, i_cel_lit, i_lig_lit, i_cwd
   use elm_varctl             , only : iulog, use_nitrif_denitrif
@@ -24,7 +24,7 @@ module NitrogenStateUpdate1Mod
   ! bgc interface & pflotran:
   use elm_varctl             , only : use_pflotran, pf_cmode
   ! forest fertilization experiment
-  use clm_time_manager       , only : get_curr_date
+  use elm_time_manager       , only : get_curr_date
   use CNStateType            , only : fert_type , fert_continue, fert_dose, fert_start, fert_end
   use elm_varctl             , only : forest_fert_exp
   use elm_varctl             , only : nu_com

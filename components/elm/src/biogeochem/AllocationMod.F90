@@ -183,7 +183,7 @@ contains
     !
     ! !USES:
     use elm_varcon      , only: secspday
-    use clm_time_manager, only: get_step_size, get_curr_date
+    use elm_time_manager, only: get_step_size, get_curr_date
     use elm_varpar      , only: crop_prog
     use elm_varctl      , only: iulog, cnallocate_carbon_only_set
     use elm_varctl      , only: cnallocate_carbonnitrogen_only_set
@@ -309,7 +309,7 @@ contains
     use elm_varcon       , only: nitrif_n2o_loss_frac, secspday
     use elm_varctl       , only: cnallocate_carbon_only_set
 !    use landunit_varcon  , only: istsoil, istcrop
-    use clm_time_manager , only: get_step_size, get_curr_date
+    use elm_time_manager , only: get_step_size, get_curr_date
     !
     ! !ARGUMENTS:
     type(bounds_type)        , intent(in)    :: bounds
@@ -1082,7 +1082,7 @@ contains
     use elm_varpar       , only: nlevdecomp, ndecomp_cascade_transitions
     use elm_varcon       , only: nitrif_n2o_loss_frac, secspday
 !    use landunit_varcon  , only: istsoil, istcrop
-    use clm_time_manager , only: get_step_size
+    use elm_time_manager , only: get_step_size
     use elm_varcon       , only : zisoi
     !
     ! !ARGUMENTS:
@@ -2847,7 +2847,7 @@ contains
     use elm_varpar       , only:  nlevdecomp 
     use elm_varcon       , only: nitrif_n2o_loss_frac, secspday
 !    use landunit_varcon  , only: istsoil, istcrop
-    use clm_time_manager , only: get_step_size
+    use elm_time_manager , only: get_step_size
     !
     ! !ARGUMENTS:
     type(bounds_type)        , intent(in)    :: bounds

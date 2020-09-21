@@ -49,7 +49,7 @@ contains
     use column_varcon   , only : icol_roof, icol_sunwall, icol_shadewall
     use column_varcon   , only : icol_road_imperv, icol_road_perv
     use elm_varpar      , only : nlevsoi, nlevgrnd, maxpatch_pft
-    use clm_time_manager, only : get_step_size
+    use elm_time_manager, only : get_step_size
     use elm_varpar      , only : nlayer, nlayert
     use elm_varctl      , only : use_var_soil_thick
     use abortutils      , only : endrun
@@ -267,7 +267,7 @@ contains
      use elm_varcon       , only : denh2o, denice, roverg, wimp, pc, mu, tfrz
      use column_varcon    , only : icol_roof, icol_road_imperv, icol_sunwall, icol_shadewall, icol_road_perv
      use landunit_varcon  , only : istsoil, istcrop
-     use clm_time_manager , only : get_step_size
+     use elm_time_manager , only : get_step_size
      !
      ! !ARGUMENTS:
      type(bounds_type)        , intent(in)    :: bounds               
@@ -541,7 +541,7 @@ contains
      ! Calculate watertable, considering aquifer recharge but no drainage.
      !
      ! !USES:
-     use clm_time_manager , only : get_step_size
+     use elm_time_manager , only : get_step_size
      use elm_varcon       , only : pondmx, tfrz, watmin,denice,denh2o
      use elm_varpar       , only : nlevsoi, nlevgrnd
      use column_varcon    , only : icol_roof, icol_road_imperv
@@ -886,7 +886,7 @@ contains
      ! Calculate subsurface drainage
      !
      ! !USES:
-     use clm_time_manager , only : get_step_size
+     use elm_time_manager , only : get_step_size
      use elm_varpar       , only : nlevsoi, nlevgrnd, nlayer, nlayert
      use elm_varcon       , only : pondmx, tfrz, watmin,rpi, secspday, nlvic
      use column_varcon    , only : icol_roof, icol_road_imperv, icol_road_perv
@@ -1531,7 +1531,7 @@ contains
      ! Calculate subsurface drainage
      !
      ! !USES:
-     use clm_time_manager , only : get_step_size
+     use elm_time_manager , only : get_step_size
      use elm_varpar       , only : nlevsoi, nlevgrnd, nlayer, nlayert
      use elm_varcon       , only : pondmx, tfrz, watmin,rpi, secspday, nlvic
      use column_varcon    , only : icol_roof, icol_road_imperv, icol_road_perv

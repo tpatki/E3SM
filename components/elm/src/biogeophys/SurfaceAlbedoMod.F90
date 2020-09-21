@@ -201,7 +201,7 @@ contains
     !
     ! !USES:
     use shr_orb_mod
-    use clm_time_manager   , only : get_nstep
+    use elm_time_manager   , only : get_nstep
     use abortutils         , only : endrun
     use elm_varctl         , only : iulog, subgridflag, use_snicar_frc, use_fates, use_snicar_ad
     use CLMFatesInterfaceMod, only : hlm_fates_interface_type

@@ -16,7 +16,7 @@ module CH4Mod
   use elm_varcon         , only : denh2o, denice, tfrz, grav, spval, rgas, grlnd
   use elm_varcon         , only : catomw, s_con, d_con_w, d_con_g, c_h_inv, kh_theta, kh_tbase
   use landunit_varcon    , only : istdlak
-  use clm_time_manager   , only : get_step_size, get_nstep
+  use elm_time_manager   , only : get_step_size, get_nstep
   use elm_varctl         , only : iulog, use_cn, use_nitrif_denitrif, use_lch4
   use abortutils         , only : endrun
   use decompMod          , only : bounds_type
@@ -2234,7 +2234,7 @@ contains
     ! Oxidation will be limited by available oxygen in ch4_tran.
     
     ! !USES:
-    use clm_time_manager, only : get_step_size
+    use elm_time_manager, only : get_step_size
     !
     ! !ARGUMENTS:
     type(bounds_type)      , intent(in) :: bounds    
@@ -2393,7 +2393,7 @@ contains
 
     ! !USES:
     use elm_varcon       , only : rpi
-    use clm_time_manager , only : get_step_size
+    use elm_time_manager , only : get_step_size
     use pftvarcon        , only : nc3_arctic_grass, crop, nc3_nonarctic_grass, nc4_grass, noveg
     use CH4varcon        , only : transpirationloss, usefrootc, use_aereoxid_prog
     !
@@ -2651,7 +2651,7 @@ contains
     ! Bubbles are released to the water table surface in ch4_tran.
 
     ! !USES:
-    use clm_time_manager   , only : get_step_size
+    use elm_time_manager   , only : get_step_size
     use LakeCon           
     !
     ! !ARGUMENTS:
@@ -2791,7 +2791,7 @@ contains
     ! Then CH4 diffusive flux is calculated and consistency is checked.
 
     ! !USES:
-    use clm_time_manager   , only : get_step_size, get_nstep
+    use elm_time_manager   , only : get_step_size, get_nstep
     use TridiagonalMod     , only : Tridiagonal
     use CH4varcon          , only : ch4frzout, use_aereoxid_prog
     !
@@ -3651,7 +3651,7 @@ contains
     ! !DESCRIPTION: Annual mean fields.
     !
     ! !USES:
-    use clm_time_manager, only: get_step_size, get_days_per_year, get_nstep
+    use elm_time_manager, only: get_step_size, get_days_per_year, get_nstep
     use elm_varcon      , only: secspday
     !
     ! !ARGUMENTS:

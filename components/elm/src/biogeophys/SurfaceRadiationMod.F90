@@ -327,7 +327,7 @@ contains
      use elm_varcon       , only : spval, degpsec, isecspday
      use landunit_varcon  , only : istsoil, istcrop 
      use elm_varctl       , only : subgridflag, use_snicar_frc, iulog
-     use clm_time_manager , only : get_curr_date, get_step_size
+     use elm_time_manager , only : get_curr_date, get_step_size
      use SnowSnicarMod    , only : DO_SNO_OC
      use abortutils       , only : endrun
      !

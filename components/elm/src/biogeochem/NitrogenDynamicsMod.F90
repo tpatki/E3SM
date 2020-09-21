@@ -161,7 +161,7 @@ contains
     ! All N fixation goes to the soil mineral N pool.
     !
     ! !USES:
-    use clm_time_manager , only : get_days_per_year, get_step_size
+    use elm_time_manager , only : get_days_per_year, get_step_size
     use shr_sys_mod      , only : shr_sys_flush
     use elm_varcon       , only : secspday, spval
     !
@@ -240,7 +240,7 @@ contains
     !
     ! !USES:
     use elm_varpar       , only : nlevdecomp, nlevsoi
-    use clm_time_manager , only : get_step_size
+    use elm_time_manager , only : get_step_size
     !
     ! !ARGUMENTS:
     type(bounds_type)        , intent(in)    :: bounds  
@@ -624,7 +624,7 @@ contains
     ! N2 fixation is based on Fisher 2010 GBC doi:10.1029/2009GB003621; Wang 2007 GBC doi:10.1029/2006GB002797; and Grand 2012 ecosys model
     !
     ! !USES:
-    use clm_time_manager , only : get_days_per_year, get_step_size
+    use elm_time_manager , only : get_days_per_year, get_step_size
     use shr_sys_mod      , only : shr_sys_flush
     use elm_varcon       , only : secspday, spval
     use pftvarcon        , only : noveg

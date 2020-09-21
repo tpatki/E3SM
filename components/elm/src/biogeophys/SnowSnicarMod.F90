@@ -220,7 +220,7 @@ contains
     !
     ! !USES:
     use elm_varpar       , only : nlevsno, numrad
-    use clm_time_manager , only : get_nstep
+    use elm_time_manager , only : get_nstep
     use shr_const_mod    , only : SHR_CONST_PI
     !
     ! !ARGUMENTS:
@@ -1161,7 +1161,7 @@ contains
     !   I am aware.
     !
     ! !USES:
-    use clm_time_manager , only : get_step_size, get_nstep
+    use elm_time_manager , only : get_step_size, get_nstep
     use elm_varpar       , only : nlevsno
     use elm_varcon       , only : spval
     use shr_const_mod    , only : SHR_CONST_RHOICE, SHR_CONST_PI
@@ -1652,7 +1652,7 @@ contains
      !
      ! !USES:
      use elm_varpar       , only : nlevsno, numrad
-     use clm_time_manager , only : get_nstep
+     use elm_time_manager , only : get_nstep
      use shr_const_mod    , only : SHR_CONST_PI
      !
      ! !ARGUMENTS:

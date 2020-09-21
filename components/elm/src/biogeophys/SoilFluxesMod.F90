@@ -46,7 +46,7 @@ contains
     ! Update surface fluxes based on the new ground temperature
     !
     ! !USES:
-    use clm_time_manager , only : get_step_size
+    use elm_time_manager , only : get_step_size
     use elm_varcon       , only : hvap, cpair, grav, vkc, tfrz, sb 
     use landunit_varcon  , only : istsoil, istcrop
     use column_varcon    , only : icol_roof, icol_sunwall, icol_shadewall, icol_road_perv

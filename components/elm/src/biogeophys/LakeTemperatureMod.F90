@@ -113,7 +113,7 @@ contains
     use QSatMod            , only : QSat
     use TridiagonalMod     , only : Tridiagonal
     use elm_varpar         , only : nlevlak, nlevgrnd, nlevsno
-    use clm_time_manager   , only : get_step_size
+    use elm_time_manager   , only : get_step_size
     use elm_varcon         , only : hfus, cpliq, cpice, tkwat, tkice, denice
     use elm_varcon         , only : vkc, grav, denh2o, tfrz, cnfac
     use elm_varctl         , only : iulog, use_lch4
@@ -1258,7 +1258,7 @@ contains
      ! Errors will be trapped at the end of LakeTemperature.
      !
      ! !USES:
-     use clm_time_manager , only : get_step_size
+     use elm_time_manager , only : get_step_size
      use elm_varcon       , only : tfrz, hfus, denh2o, denice, cpliq, cpice
      use elm_varpar       , only : nlevsno, nlevgrnd, nlevlak
      !

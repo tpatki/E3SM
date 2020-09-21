@@ -549,7 +549,7 @@ contains
     !
     ! !USES 
     use accumulMod       , only : extract_accum_field
-    use clm_time_manager , only : get_nstep
+    use elm_time_manager , only : get_nstep
     !
     ! !ARGUMENTS:
     class(atm2lnd_type) :: this
@@ -614,7 +614,7 @@ contains
   subroutine UpdateAccVars (this, bounds)
     !
     ! USES
-    use clm_time_manager, only : get_nstep
+    use elm_time_manager, only : get_nstep
     use accumulMod      , only : update_accum_field, extract_accum_field
     !
     ! !ARGUMENTS:

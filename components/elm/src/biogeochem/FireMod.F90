@@ -127,7 +127,7 @@ contains
     ! Computes column-level burned area 
     !
     ! !USES:
-    use clm_time_manager     , only: get_step_size, get_days_per_year, get_curr_date, get_nstep
+    use elm_time_manager     , only: get_step_size, get_days_per_year, get_curr_date, get_nstep
     use elm_varpar           , only: max_patch_per_col
     use elm_varcon           , only: secspday
     use elm_varctl           , only: use_nofire, spinup_state, spinup_mortality_factor
@@ -665,7 +665,7 @@ contains
    ! !USES:
    use pftvarcon            , only: cc_leaf,cc_lstem,cc_dstem,cc_other,fm_leaf,fm_lstem,fm_other,fm_root,fm_lroot,fm_droot
    use pftvarcon            , only: nc3crop,lf_flab,lf_fcel,lf_flig,fr_flab,fr_fcel,fr_flig
-   use clm_time_manager     , only: get_step_size,get_days_per_year,get_curr_date
+   use elm_time_manager     , only: get_step_size,get_days_per_year,get_curr_date
    use elm_varpar           , only: max_patch_per_col
    use elm_varctl           , only: spinup_state, spinup_mortality_factor
    use dynSubgridControlMod , only: get_flanduse_timeseries
@@ -1523,7 +1523,7 @@ contains
    !
    ! !USES:
    use elm_varctl       , only : inst_name
-   use clm_time_manager , only : get_calendar
+   use elm_time_manager , only : get_calendar
    use ncdio_pio        , only : pio_subsystem
    use shr_pio_mod      , only : shr_pio_getiotype
    use clm_nlUtilsMod   , only : find_nlgroup_name
@@ -1640,7 +1640,7 @@ subroutine hdm_interp(bounds)
   ! Interpolate data stream information for population density.
   !
   ! !USES:
-  use clm_time_manager, only : get_curr_date
+  use elm_time_manager, only : get_curr_date
   !
   ! !ARGUMENTS:
   type(bounds_type), intent(in) :: bounds  
@@ -1676,7 +1676,7 @@ subroutine lnfm_init( bounds )
   !
   ! !USES:
   use elm_varctl       , only : inst_name
-  use clm_time_manager , only : get_calendar
+  use elm_time_manager , only : get_calendar
   use ncdio_pio        , only : pio_subsystem
   use shr_pio_mod      , only : shr_pio_getiotype
   use clm_nlUtilsMod   , only : find_nlgroup_name
@@ -1792,7 +1792,7 @@ subroutine lnfm_interp(bounds )
   ! Interpolate data stream information for Lightning.
   !
   ! !USES:
-  use clm_time_manager, only : get_curr_date
+  use elm_time_manager, only : get_curr_date
   !
   ! !ARGUMENTS:
   type(bounds_type), intent(in) :: bounds  

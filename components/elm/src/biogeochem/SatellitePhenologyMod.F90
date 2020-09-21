@@ -73,7 +73,7 @@ contains
     !
     ! !USES:
     use elm_varctl       , only : inst_name
-    use clm_time_manager , only : get_calendar
+    use elm_time_manager , only : get_calendar
     use ncdio_pio        , only : pio_subsystem
     use shr_pio_mod      , only : shr_pio_getiotype
     use clm_nlUtilsMod   , only : find_nlgroup_name
@@ -199,7 +199,7 @@ contains
     ! Interpolate data stream information for Lai.
     !
     ! !USES:
-    use clm_time_manager, only : get_curr_date
+    use elm_time_manager, only : get_curr_date
     use pftvarcon       , only : noveg
     !
     ! !ARGUMENTS:
@@ -405,7 +405,7 @@ contains
     !
     ! !USES:
     use elm_varctl      , only : fsurdat
-    use clm_time_manager, only : get_curr_date, get_step_size, get_nstep
+    use elm_time_manager, only : get_curr_date, get_step_size, get_nstep
     !
     ! !ARGUMENTS:
     type(bounds_type), intent(in) :: bounds  
@@ -563,7 +563,7 @@ contains
     use fileutils        , only : getfil
     use spmdMod          , only : masterproc, mpicom, MPI_REAL8, MPI_INTEGER
     use shr_scam_mod     , only : shr_scam_getCloseLatLon
-    use clm_time_manager , only : get_nstep
+    use elm_time_manager , only : get_nstep
     use netcdf
     !
     ! !ARGUMENTS:

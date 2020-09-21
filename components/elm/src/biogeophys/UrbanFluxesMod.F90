@@ -62,7 +62,7 @@ contains
     use FrictionVelocityMod , only : FrictionVelocity, MoninObukIni
     use QSatMod             , only : QSat
     use elm_varpar          , only : maxpatch_urb, nlevurb, nlevgrnd
-    use clm_time_manager    , only : get_curr_date, get_step_size, get_nstep
+    use elm_time_manager    , only : get_curr_date, get_step_size, get_nstep
     use elm_varctl          , only : use_vsfm
     !
     ! !ARGUMENTS:

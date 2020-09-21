@@ -160,7 +160,7 @@ contains
     !   results in a tridiagonal system equation.
     !
     ! !USES:
-    use clm_time_manager         , only : get_step_size
+    use elm_time_manager         , only : get_step_size
     use elm_varpar               , only : nlevsno, nlevgrnd, nlevurb
     use elm_varctl               , only : iulog
     use elm_varcon               , only : cnfac, cpice, cpliq, denh2o
@@ -1071,7 +1071,7 @@ end subroutine SolveTemperature
     ! Only freezing is considered.  When water freezes, move ice to bottom snow layer.
     !
     ! !USES:
-    use clm_time_manager , only : get_step_size
+    use elm_time_manager , only : get_step_size
     use elm_varcon       , only : tfrz, hfus, grav, denice, cnfac, cpice, cpliq
     use elm_varpar       , only : nlevsno, nlevgrnd
     use elm_varctl       , only : iulog
@@ -1299,7 +1299,7 @@ end subroutine SolveTemperature
     ! (3) Re-adjust the ice and liquid mass, and the layer temperature
     !
     ! !USES:
-    use clm_time_manager , only : get_step_size
+    use elm_time_manager , only : get_step_size
     use elm_varpar       , only : nlevsno, nlevgrnd,nlevurb
     use elm_varctl       , only : iulog
     use elm_varcon       , only : tfrz, hfus, grav

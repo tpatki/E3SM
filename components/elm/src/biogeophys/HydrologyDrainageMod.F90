@@ -53,7 +53,7 @@ contains
     use domainMod        , only : ldomain
     use atm2lndType      , only : atm2lnd_type
     use elm_varpar       , only : nlevgrnd, nlevurb, nlevsoi    
-    use clm_time_manager , only : get_step_size, get_nstep
+    use elm_time_manager , only : get_step_size, get_nstep
     use SoilHydrologyMod , only : CLMVICMap, Drainage
     use elm_varctl       , only : use_vsfm
     use BeTRSimulationALM, only : betr_simulation_alm_type

@@ -620,7 +620,7 @@ contains
      ! written by C. Koven based on original CLM4 decomposition cascade by P. Thornton
      !
      ! !USES:
-     use clm_time_manager, only : get_step_size, get_nstep, get_curr_date
+     use elm_time_manager, only : get_step_size, get_nstep, get_curr_date
      use elm_varcon      , only : secspday
      use elm_varpar      , only : i_cwd
      !

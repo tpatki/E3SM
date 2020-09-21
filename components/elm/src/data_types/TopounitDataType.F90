@@ -233,7 +233,7 @@ module TopounitDataType
     !
     ! !USES 
     use accumulMod       , only : extract_accum_field
-    use clm_time_manager , only : get_nstep
+    use elm_time_manager , only : get_nstep
     !
     ! !ARGUMENTS:
     class(topounit_atmospheric_state) :: this
@@ -274,7 +274,7 @@ module TopounitDataType
   subroutine update_acc_vars_top_as (this, bounds)
     !
     ! USES
-    use clm_time_manager, only : get_nstep
+    use elm_time_manager, only : get_nstep
     use accumulMod      , only : update_accum_field, extract_accum_field
     !
     ! !ARGUMENTS:
@@ -457,7 +457,7 @@ module TopounitDataType
     !
     ! !USES 
     use accumulMod       , only : extract_accum_field
-    use clm_time_manager , only : get_nstep
+    use elm_time_manager , only : get_nstep
     !
     ! !ARGUMENTS:
     class(topounit_atmospheric_flux) :: this
@@ -515,7 +515,7 @@ module TopounitDataType
   subroutine update_acc_vars_top_af (this, bounds)
     !
     ! USES
-    use clm_time_manager, only : get_nstep
+    use elm_time_manager, only : get_nstep
     use accumulMod      , only : update_accum_field, extract_accum_field
     !
     ! !ARGUMENTS:

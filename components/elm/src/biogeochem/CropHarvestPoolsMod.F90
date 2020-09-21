@@ -8,7 +8,7 @@ module CropHarvestPoolsMod
   use decompMod           , only : get_proc_bounds
   use spmdMod             , only : masterproc
   use landunit_varcon     , only : istsoil
-  use clm_time_manager    , only : get_step_size
+  use elm_time_manager    , only : get_step_size
   use elm_varctl          , only : use_c13, use_c14
   use CNCarbonStateType   , only : carbonstate_type
   use CNCarbonFluxType    , only : carbonflux_type

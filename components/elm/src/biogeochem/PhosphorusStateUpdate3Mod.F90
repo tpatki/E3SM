@@ -9,7 +9,7 @@ module PhosphorusStateUpdate3Mod
   use shr_kind_mod        , only: r8 => shr_kind_r8
   use decompMod           , only : bounds_type
   use elm_varpar          , only: nlevdecomp,ndecomp_pools,ndecomp_cascade_transitions
-  use clm_time_manager    , only : get_step_size
+  use elm_time_manager    , only : get_step_size
   use elm_varctl          , only : iulog, use_nitrif_denitrif
   use elm_varpar          , only : i_cwd, i_met_lit, i_cel_lit, i_lig_lit
   use elm_varctl          , only : use_erosion, ero_ccycle

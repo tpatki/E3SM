@@ -68,7 +68,7 @@ contains
     use column_varcon        , only : icol_shadewall
     use elm_varctl           , only : use_cn, use_betr, use_fates, use_pflotran, pf_hmode
     use elm_varpar           , only : nlevgrnd, nlevsno, nlevsoi, nlevurb
-    use clm_time_manager     , only : get_step_size, get_nstep
+    use elm_time_manager     , only : get_step_size, get_nstep
     use SnowHydrologyMod     , only : SnowCompaction, CombineSnowLayers, DivideSnowLayers
     use SnowHydrologyMod     , only : SnowWater, BuildSnowFilter 
     use SoilHydrologyMod     , only : CLMVICMap, SurfaceRunoff, Infiltration, WaterTable

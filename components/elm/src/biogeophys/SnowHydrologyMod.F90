@@ -100,7 +100,7 @@ contains
     ! !USES:
     use elm_varcon        , only : denh2o, denice, wimp, ssi
     use landunit_varcon   , only : istsoil
-    use clm_time_manager  , only : get_step_size
+    use elm_time_manager  , only : get_step_size
     use AerosolMod        , only : AerosolFluxes
     use elm_varctl        , only : use_vsfm
     !
@@ -524,7 +524,7 @@ contains
      ! fraction after the melting versus before the melting.
      !
      ! !USES:
-     use clm_time_manager, only : get_step_size
+     use elm_time_manager, only : get_step_size
      use elm_varcon      , only : denice, denh2o, tfrz, rpi
      use landunit_varcon , only : istice_mec, istdlak, istsoil, istcrop
      use elm_varctl      , only : subgridflag
@@ -685,7 +685,7 @@ contains
      ! !USES:
      use landunit_varcon  , only : istsoil, istdlak, istsoil, istwet, istice, istice_mec, istcrop
      use LakeCon          , only : lsadz
-     use clm_time_manager , only : get_step_size
+     use elm_time_manager , only : get_step_size
      use elm_varcon       , only : denh2o     
      !
      ! !ARGUMENTS:

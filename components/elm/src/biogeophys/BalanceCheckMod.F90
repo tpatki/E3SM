@@ -169,12 +169,12 @@ contains
      use column_varcon     , only : icol_road_perv, icol_road_imperv
      use landunit_varcon   , only : istice_mec, istdlak, istsoil,istcrop,istwet
      use elm_varctl        , only : create_glacier_mec_landunit
-     use clm_time_manager  , only : get_step_size, get_nstep
+     use elm_time_manager  , only : get_step_size, get_nstep
      use elm_initializeMod , only : surfalb_vars
      use domainMod         , only : ldomain
      use CanopyStateType   , only : canopystate_type
      use subgridAveMod
-     use clm_time_manager  , only : get_curr_date, get_nstep
+     use elm_time_manager  , only : get_curr_date, get_nstep
      !
      ! !ARGUMENTS:
      type(bounds_type)     , intent(in)    :: bounds  
@@ -863,7 +863,7 @@ contains
      use column_varcon     , only : icol_road_perv, icol_road_imperv
      use landunit_varcon   , only : istice_mec, istdlak, istsoil,istcrop,istwet
      use elm_varctl        , only : create_glacier_mec_landunit
-     use clm_time_manager  , only : get_step_size, get_nstep
+     use elm_time_manager  , only : get_step_size, get_nstep
      use elm_initializeMod , only : surfalb_vars
      use CanopyStateType   , only : canopystate_type
      use subgridAveMod

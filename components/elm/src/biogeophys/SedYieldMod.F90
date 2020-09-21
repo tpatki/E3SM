@@ -50,7 +50,7 @@ contains
     ! Calculate rainfall and runoff driven erosion 
     !
     ! !USES:
-    use clm_time_manager, only : get_step_size
+    use elm_time_manager, only : get_step_size
     use elm_varctl      , only : iulog
     use landunit_varcon , only : istcrop, istsoil
     use pftvarcon       , only : gcpsi, pftcc
