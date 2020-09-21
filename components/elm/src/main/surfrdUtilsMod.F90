@@ -71,7 +71,7 @@ contains
     !        a crop landunit, and put them on the vegetated landunit.
     ! !USES:
     use clm_varsur      , only : wt_lunit, wt_nat_patch, fert_cft
-    use clm_varpar      , only : cft_size, natpft_size
+    use elm_varpar      , only : cft_size, natpft_size
     use pftvarcon       , only : nc3crop
     use landunit_varcon , only : istsoil, istcrop
     ! !ARGUMENTS:
@@ -112,7 +112,7 @@ contains
     !
     ! !USES:
     use clm_varctl , only : irrigate
-    use clm_varpar , only : cft_lb, cft_ub, cft_size
+    use elm_varpar , only : cft_lb, cft_ub, cft_size
     use pftvarcon  , only : nc3crop, nc3irrig, npcropmax, mergetoclmpft
     !
     ! !ARGUMENTS:

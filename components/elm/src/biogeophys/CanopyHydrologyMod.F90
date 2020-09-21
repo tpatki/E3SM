@@ -119,7 +119,7 @@ contains
      use column_varcon      , only : icol_roof, icol_sunwall, icol_shadewall
      use landunit_varcon    , only : istcrop, istice, istwet, istsoil, istice_mec 
      use clm_varctl         , only : subgridflag
-     use clm_varpar         , only : nlevsoi,nlevsno
+     use elm_varpar         , only : nlevsoi,nlevsno
      use atm2lndType        , only : atm2lnd_type
      use domainMod          , only : ldomain
      use clm_time_manager   , only : get_step_size

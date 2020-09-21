@@ -1722,8 +1722,8 @@ contains
     ! wrapper calls to define the history file contents.
     !
     ! !USES:
-    use clm_varpar      , only : nlevgrnd, nlevsno, nlevlak, nlevurb, numrad, nmonth
-    use clm_varpar      , only : natpft_size, cft_size, maxpatch_glcmec, nlevdecomp_full, nlevtrc_full, nvegwcs
+    use elm_varpar      , only : nlevgrnd, nlevsno, nlevlak, nlevurb, numrad, nmonth
+    use elm_varpar      , only : natpft_size, cft_size, maxpatch_glcmec, nlevdecomp_full, nlevtrc_full, nvegwcs
     use landunit_varcon , only : max_lunit
     use clm_varctl      , only : caseid, ctitle, fsurdat, finidat, paramfile
     use clm_varctl      , only : version, hostname, username, conventions, source
@@ -1968,7 +1968,7 @@ contains
     ! Add global metadata defining natpft types
     !
     ! !USES:
-    use clm_varpar, only : natpft_lb, natpft_ub
+    use elm_varpar, only : natpft_lb, natpft_ub
     use pftvarcon , only : pftname_len, pftname
     !
     ! !ARGUMENTS:
@@ -1998,7 +1998,7 @@ contains
     ! Add global metadata defining natpft types
     !
     ! !USES:
-    use clm_varpar, only : cft_lb, cft_ub
+    use elm_varpar, only : cft_lb, cft_ub
     use pftvarcon , only : pftname_len, pftname
     !
     ! !ARGUMENTS:
@@ -2034,7 +2034,7 @@ contains
     !
     ! !USES:
     use subgridAveMod  , only : c2g
-    use clm_varpar     , only : nlevgrnd ,nlevlak
+    use elm_varpar     , only : nlevgrnd ,nlevlak
     use shr_string_mod , only : shr_string_listAppend
     use domainMod      , only : ldomain
     !
@@ -3171,7 +3171,7 @@ contains
     use clm_time_manager, only : get_nstep, get_curr_date, get_curr_time, get_prev_date
     use elm_varcon      , only : secspday
     use perf_mod        , only : t_startf, t_stopf
-    use clm_varpar      , only : nlevgrnd
+    use elm_varpar      , only : nlevgrnd
     !
     ! !ARGUMENTS:
     logical, intent(in) :: rstwr    ! true => write restart file this step
@@ -3375,7 +3375,7 @@ contains
     use clm_varctl      , only : nsrest, caseid, inst_suffix, nsrStartup, nsrBranch
     use fileutils       , only : getfil
     use domainMod       , only : ldomain
-    use clm_varpar      , only : nlevgrnd, nlevlak, numrad, nlevdecomp_full, nmonth
+    use elm_varpar      , only : nlevgrnd, nlevlak, numrad, nlevdecomp_full, nmonth
     use clm_time_manager, only : is_restart
     use restUtilMod     , only : iflag_skip
     use pio
@@ -4508,8 +4508,8 @@ contains
     ! initial or branch run to initialize the actual history tapes.
     !
     ! !USES:
-    use clm_varpar      , only : nlevgrnd, nlevsno, nlevlak, numrad, nlevdecomp_full, nlevtrc_soil, nmonth, nvegwcs
-    use clm_varpar      , only : natpft_size, cft_size, maxpatch_glcmec
+    use elm_varpar      , only : nlevgrnd, nlevsno, nlevlak, numrad, nlevdecomp_full, nlevtrc_soil, nmonth, nvegwcs
+    use elm_varpar      , only : natpft_size, cft_size, maxpatch_glcmec
     use landunit_varcon , only : max_lunit
     !
     ! !ARGUMENTS:
@@ -4838,7 +4838,7 @@ contains
 
     !
     ! !USES:
-    use clm_varpar  , only : nlevdecomp_full, crop_prog
+    use elm_varpar  , only : nlevdecomp_full, crop_prog
     use clm_varctl  , only : iulog
     use abortutils  , only : endrun
     use shr_log_mod , only : errMsg => shr_log_errMsg
