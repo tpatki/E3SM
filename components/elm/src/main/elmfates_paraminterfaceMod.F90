@@ -1,4 +1,4 @@
-module CLMFatesParamInterfaceMod
+module ELMFatesParamInterfaceMod
   ! NOTE(bja, 2017-01) this code can not go into the main clm-fates
   ! interface module because of circular dependancies with pftvarcon.
 
@@ -236,4 +236,4 @@ contains
  end subroutine ParametersFromNetCDF
  !-----------------------------------------------------------------------
 
-end module CLMFatesParamInterfaceMod
+end module ELMFatesParamInterfaceMod

@@ -69,7 +69,7 @@ contains
     use initGridCellsMod          , only: initGridCells, initGhostGridCells
     use CH4varcon                 , only: CH4conrd
     use UrbanParamsType           , only: UrbanInput
-    use CLMFatesParamInterfaceMod , only: FatesReadPFTs
+    use ELMFatesParamInterfaceMod , only: FatesReadPFTs
     use surfrdMod                 , only: surfrd_get_grid_conn
     use elm_varctl                , only: lateral_connectivity, domain_decomp_type
     use decompInitMod             , only: decompInit_lnd_using_gp, decompInit_ghosts

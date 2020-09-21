@@ -144,7 +144,7 @@ module CLMFatesInterfaceMod
    use dynHarvestMod          , only : num_harvest_vars, harvest_varnames
    
    use FatesInterfaceTypesMod , only : bc_in_type, bc_out_type
-   use CLMFatesParamInterfaceMod         , only : FatesReadParameters
+   use ELMFatesParamInterfaceMod         , only : FatesReadParameters
 
    implicit none
    
