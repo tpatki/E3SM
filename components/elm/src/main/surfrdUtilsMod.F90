@@ -70,7 +70,7 @@ contains
     !        Convert generic crop types that were read in as seperate CFT's on
     !        a crop landunit, and put them on the vegetated landunit.
     ! !USES:
-    use clm_varsur      , only : wt_lunit, wt_nat_patch, fert_cft
+    use elm_varsur      , only : wt_lunit, wt_nat_patch, fert_cft
     use elm_varpar      , only : cft_size, natpft_size
     use pftvarcon       , only : nc3crop
     use landunit_varcon , only : istsoil, istcrop
