@@ -27,6 +27,9 @@ use dcmip16_wrapper,      only: dcmip2016_test1, dcmip2016_test2, dcmip2016_test
                                 dcmip2016_test1_pg, dcmip2016_test1_pg_forcing, dcmip2016_init
 use held_suarez_mod,      only: hs0_init_state
 
+use dry_planar_tests,       only: hgw_init, nhgw_init, hmw_init, nhmw_init, smw_init, rb_init, dc_init, bi_init
+use moist_planar_tests,       only: mrb_init, mdc_init, mbi_init, tc_init, sc_init
+
 implicit none
 
 public :: set_prescribed_wind
@@ -48,7 +51,7 @@ subroutine set_test_initial_conditions(elem, deriv, hybrid, hvcoord, tl, nets, n
   type(hvcoord_t),    intent(inout)         :: hvcoord                  ! hybrid vertical coordinates
   type(timelevel_t),  intent(in)            :: tl                       ! time level sctructure
   integer,            intent(in)            :: nets,nete                ! start, end element index
- 
+
   ! init calls for any runtype
   select case(test_case)
     case('asp_baroclinic');
@@ -75,15 +78,27 @@ subroutine set_test_initial_conditions(elem, deriv, hybrid, hvcoord, tl, nets, n
     case('mtest2');
     case('mtest3');
     case('held_suarez0');
-    case('jw_baroclinic');
+    case('hgw');
+    case('nhgw');
+    case('hmw');
+    case('nhmw');
+    case('smw');
+    case('rb');
+    case('dc');
+    case('bi');
+    case('mrb');
+    case('mdc');
+    case('mbi');
+    case('tc');
+    case('sc');
     case default;               call abortmp('unrecognized test case')
   endselect
 
   !initial conditions for initial run, runtype=0
-  ! also does other test case setup.  
+  ! also does other test case setup.
 !  if (runtype == 0) then
     select case(test_case)
- 
+
       case('asp_baroclinic');     call asp_baroclinic   (elem,hybrid,hvcoord,nets,nete)
       case('asp_gravity_wave');   call asp_gravity_wave (elem,hybrid,hvcoord,nets,nete,sub_case)
       case('asp_mountain');       call asp_mountain     (elem,hybrid,hvcoord,nets,nete)
@@ -113,6 +128,19 @@ subroutine set_test_initial_conditions(elem, deriv, hybrid, hvcoord, tl, nets, n
       case('mtest3');             call mtest_init       (elem,hybrid,hvcoord,nets,nete,3)
       case('held_suarez0');       call hs0_init_state   (elem,hybrid,hvcoord,nets,nete,300.0_rl)
       case('jw_baroclinic');      call jw_baroclinic    (elem,hybrid,hvcoord,nets,nete)
+      case('hgw');                call hgw_init(elem,hybrid,hvcoord,nets,nete)
+      case('nhgw');               call nhgw_init(elem,hybrid,hvcoord,nets,nete)
+      case('hmw');                call hmw_init(elem,hybrid,hvcoord,nets,nete)
+      case('nhmw');               call nhmw_init(elem,hybrid,hvcoord,nets,nete)
+      case('smw');                call smw_init(elem,hybrid,hvcoord,nets,nete)
+      case('rb');                 call rb_init(elem,hybrid,hvcoord,nets,nete)
+      case('dc');                 call dc_init(elem,hybrid,hvcoord,nets,nete)
+      case('bi');                 call bi_init(elem,hybrid,hvcoord,nets,nete)
+      case('mrb');                call mrb_init(elem,hybrid,hvcoord,nets,nete)
+      case('mdc');                call mdc_init(elem,hybrid,hvcoord,nets,nete)
+      case('mbi');                call mbi_init(elem,hybrid,hvcoord,nets,nete)
+      case('tc');                 call tc_init(elem,hybrid,hvcoord,nets,nete)
+      case('sc');                 call sc_init(elem,hybrid,hvcoord,nets,nete)
       case default;               call abortmp('unrecognized test case')
 
     endselect
@@ -145,7 +173,7 @@ subroutine set_test_prescribed_wind(elem, deriv, hybrid, hvcoord, dt, tl, nets, 
     call copy_state(elem(ie),n0,np1)
   enddo
 
-  ! set prescribed quantities at timelevel np1 
+  ! set prescribed quantities at timelevel np1
   select case(test_case)
     case('dcmip2012_test1_1'); call dcmip2012_test1_1(elem,hybrid,hvcoord,nets,nete,time,np1,np1)
     case('dcmip2012_test1_1_conv'); call dcmip2012_test1_1_conv(elem,hybrid,hvcoord,nets,nete,time,np1,np1)
@@ -223,7 +251,7 @@ subroutine compute_test_forcing(elem,hybrid,hvcoord,nt,ntQ,dt,nets,nete,tl)
       enddo
     enddo
   endif
-    
+
 end subroutine
 
 

@@ -1,0 +1,69 @@
+#!/bin/bash
+
+HOMME_ROOT=/home/celdred/E3SM/components/homme
+BASE_DIR=/home/celdred/E3SM/components/homme/planar_tests/dry
+
+mkdir -p laptop-cpu     || exit -1
+cd laptop-cpu
+rm -rf *
+
+
+rm -rf CMakeFiles CMakeCache.txt
+cmake                                                                          \
+   -C /home/celdred/E3SM/components/homme/cmake/machineFiles/ubuntu1804.cmake  \
+  	-DDEBUG_FLAGS=" "                                                           \
+	-DHOMME_ENABLE_COMPOSE=FALSE                                             \
+  $HOMME_ROOT
+
+
+make clean                                                  || exit -1
+
+mkdir -p $BASE_DIR/execs
+
+make -j 4 preqx-nlev10-native                                              || exit -1
+make -j 4 theta-l-nlev10-native                                              || exit -1
+cp ./test_execs/theta-l-nlev10-native/theta-l-nlev10-native $BASE_DIR/execs/theta-l-nlev10-native.cpu      || exit -1
+cp ./test_execs/preqx-nlev10-native/preqx-nlev10-native $BASE_DIR/execs/preqx-nlev10-native.cpu      || exit -1
+
+make -j 4 preqx-nlev20-native                                              || exit -1
+make -j 4 theta-l-nlev20-native                                              || exit -1
+cp ./test_execs/theta-l-nlev20-native/theta-l-nlev20-native $BASE_DIR/execs/theta-l-nlev20-native.cpu      || exit -1
+cp ./test_execs/preqx-nlev20-native/preqx-nlev20-native $BASE_DIR/execs/preqx-nlev20-native.cpu      || exit -1
+
+make -j 4 preqx-nlev30-native                                              || exit -1
+make -j 4 theta-l-nlev30-native                                              || exit -1
+cp ./test_execs/theta-l-nlev30-native/theta-l-nlev30-native $BASE_DIR/execs/theta-l-nlev30-native.cpu      || exit -1
+cp ./test_execs/preqx-nlev30-native/preqx-nlev30-native $BASE_DIR/execs/preqx-nlev30-native.cpu      || exit -1
+
+
+make -j 4 preqx-nlev100-native                                              || exit -1
+make -j 4 theta-l-nlev100-native                                              || exit -1
+cp ./test_execs/theta-l-nlev100-native/theta-l-nlev100-native $BASE_DIR/execs/theta-l-nlev100-native.cpu      || exit -1
+cp ./test_execs/preqx-nlev100-native/preqx-nlev100-native $BASE_DIR/execs/preqx-nlev100-native.cpu      || exit -1
+
+
+make -j 4 preqx-nlev140-native                                              || exit -1
+make -j 4 theta-l-nlev140-native                                              || exit -1
+cp ./test_execs/theta-l-nlev140-native/theta-l-nlev140-native $BASE_DIR/execs/theta-l-nlev140-native.cpu      || exit -1
+cp ./test_execs/preqx-nlev140-native/preqx-nlev140-native $BASE_DIR/execs/preqx-nlev140-native.cpu      || exit -1
+
+make -j 4 preqx-nlev200-native                                              || exit -1
+make -j 4 theta-l-nlev200-native                                              || exit -1
+cp ./test_execs/theta-l-nlev200-native/theta-l-nlev200-native $BASE_DIR/execs/theta-l-nlev200-native.cpu      || exit -1
+cp ./test_execs/preqx-nlev200-native/preqx-nlev200-native $BASE_DIR/execs/preqx-nlev200-native.cpu      || exit -1
+
+
+make -j 4 theta-l-nlev64-native                                              || exit -1
+cp ./test_execs/theta-l-nlev64-native/theta-l-nlev64-native $BASE_DIR/execs/theta-l-nlev64-native.cpu      || exit -1
+
+make -j 4 theta-l-nlev128-native                                              || exit -1
+cp ./test_execs/theta-l-nlev128-native/theta-l-nlev128-native $BASE_DIR/execs/theta-l-nlev128-native.cpu      || exit -1
+
+make -j 4 theta-l-nlev256-native                                              || exit -1
+cp ./test_execs/theta-l-nlev256-native/theta-l-nlev256-native $BASE_DIR/execs/theta-l-nlev256-native.cpu      || exit -1
+
+make -j 4 theta-l-nlev150-native                                              || exit -1
+cp ./test_execs/theta-l-nlev150-native/theta-l-nlev150-native $BASE_DIR/execs/theta-l-nlev150-native.cpu      || exit -1
+
+make -j 4 theta-l-nlev300-native                                              || exit -1
+cp ./test_execs/theta-l-nlev300-native/theta-l-nlev300-native $BASE_DIR/execs/theta-l-nlev300-native.cpu      || exit -1
